@@ -31,7 +31,7 @@ export async function deleteModel(id: number, model_id: string, model_version: s
     const supabase = await createClient()
     if(model_version){
         try {
-            const res = await fetch(`https://api.replicate.com/v1/models/mohdfaaiz1307/${model_id},version/${model_version}`,{
+            const res = await fetch(`https://api.replicate.com/v1/models/mohdfaaiz1307/${model_id},versions/${model_version}`,{
                 method: 'DELETE',
                 headers: {
                     "Authorization": `Bearer ${process.env.REPLICATE_API_TOKEN}`
@@ -43,7 +43,7 @@ export async function deleteModel(id: number, model_id: string, model_version: s
         } catch (e) {
             console.error('Failed to delete model version from replicate: ', e)
             return{
-                error: 'Failed to delete model version from replicate: ',
+                error: 'Failed to delete model version from replicate',
                 success: false,
             }
         }
@@ -63,7 +63,7 @@ export async function deleteModel(id: number, model_id: string, model_version: s
         } catch (e) {
             console.error('Failed to delete model from replicate: ', e)
             return{
-                error: 'Failed to delete model from replicate: ',
+                error: 'Failed to delete model from replicate',
                 success: false,
             }
         }
@@ -71,7 +71,7 @@ export async function deleteModel(id: number, model_id: string, model_version: s
 
     const {error} = await supabase.from('models').delete().eq("id", id)
     return{
-        error: error?.message || 'Failed to delete model from database: ',
+        error: error?.message || 'Failed to delete model from database',
         success: !error,
     }
 }

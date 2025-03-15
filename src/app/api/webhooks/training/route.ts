@@ -3,7 +3,6 @@ import Replicate from "replicate";
 import crypto from "crypto";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { Resend } from 'resend';
-import { EmailTemplate } from "@/components/email-templates/EmailTemplate";
 
 const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN,
@@ -49,44 +48,9 @@ if(userError || !user){
 const userEmail = user.user.email ?? "";
 const userName = user.user.user_metadata.full_name ?? "";
 
-if(body.status === "succeeded"){
-    // send a successful status email
-    await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
-        to: [userEmail],
-        subject: 'Model Training Completed',
-        react: EmailTemplate({ userName, message: "Your model training has been completed successfully!" }),
-      });
-    // Update the supabase models table
-    await supabaseAdmin.from('models').update({
-        training_status: body.status,
-        training_time: body.metrics?.total_time ?? null,
-        version: body.output?.version.split(":")[1] ?? null,
-    }).eq("user_id", userId).eq("model_name", modelName)
-
-
-}else{
     
-    // handle the failed and the cancelled status
-    await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
-        to: [userEmail],
-        subject: `Model Training ${body.status}`,
-        react: EmailTemplate({ userName, message: `Your model training has been ${body.status}!` }),
-      });
-    // Update the supabase models table
-    await supabaseAdmin.from('models').update({
-        training_status: body.status,
-    }).eq("user_id", userId).eq("model_name", modelName)
-
-
-}
-// delete the training data from supabase storage
-
-await supabaseAdmin.storage.from("training_data").remove([`${fileName}`])
-    
-
-    return new NextResponse("Ok", {status: 200});
+    console.log("Webhook is working fine!", body);
+    return NextResponse.json({success: true}, {status: 201});
     } catch (error) {
         console.log("Webhook processing error: ", error);
         return new NextResponse("Internal server error", {status: 500});

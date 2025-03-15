@@ -64,7 +64,7 @@ export async function POST(request: NextRequest){
                 input_images: fileUrl.signedUrl,
                 trigger_word: "ohwx",
               },
-              webhook: `${WEBHOOK_URL}/api/webhooks/training?userId=${user.id}&modelName=${encodeURIComponent(input.modelName)}&fileName=${encodeURIComponent(fileName)}`,
+              webhook: `${WEBHOOK_URL}/api/webhooks/training?userId=${user.id}&modelName=${encodeURIComponent(modelId)}&fileName=${encodeURIComponent(fileName)}`,
               webhook_events_filter: ["completed"], // optional
             }
           );
