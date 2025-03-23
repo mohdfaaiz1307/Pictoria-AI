@@ -50,6 +50,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
       interval: price.recurring?.interval ?? null,
       interval_count: price.recurring?.interval_count ?? null,
       trial_period_days: price.recurring?.trial_period_days ?? TRIAL_PERIOD_DAYS,
+      description: price.nickname ?? null,
       metadata: price.metadata ?? null
     };
   
@@ -197,7 +198,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
     const customer = payment_method.customer as string;
     const { name, phone, address } = payment_method.billing_details;
     if (!name || !phone || !address) return;
-    //@ts-ignore
+    //@ts-expect-error
     await stripe.customers.update(customer, { name, phone, address });
     const { error: updateError } = await supabaseAdmin
       .from('users')
@@ -234,10 +235,10 @@ const upsertProductRecord = async (product: Stripe.Product) => {
       id: subscription.id,
       user_id: uuid,
       metadata: subscription.metadata,
-      status: subscription.status,
+      status: subscription.status as "active" | "canceled" | "incomplete" | "incomplete_expired" | "past_due" | "trialing" | "unpaid" | null | undefined,
       price_id: subscription.items.data[0].price.id,
       //TODO check quantity on subscription
-      // @ts-ignore
+      // @ts-expect-error
       quantity: subscription.quantity,
       cancel_at_period_end: subscription.cancel_at_period_end,
       cancel_at: subscription.cancel_at
@@ -276,7 +277,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
     // For a new subscription copy the billing details to the customer object.
     // NOTE: This is a costly operation and should happen at the very end.
     if (createAction && subscription.default_payment_method && uuid)
-      //@ts-ignore
+
       await copyBillingDetailsToCustomer(
         uuid,
         subscription.default_payment_method as Stripe.PaymentMethod

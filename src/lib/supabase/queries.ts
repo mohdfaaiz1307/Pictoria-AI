@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SupabaseClient } from '@supabase/supabase-js';
 import { cache } from 'react';
 

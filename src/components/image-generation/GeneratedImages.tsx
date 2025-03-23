@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 'use client'
 import React from 'react'
 import { Card, CardContent } from '../ui/card'
@@ -34,7 +35,7 @@ import useGeneratedStore from '@/store/useGeneratedStore'
 const GeneratedImages = () => {
 
   const images = useGeneratedStore((state) => state.images);
-  const loading = useGeneratedStore((state) => state.loading)
+  const loading = useGeneratedStore((state) => state.loading);
 
   console.log(images);
 

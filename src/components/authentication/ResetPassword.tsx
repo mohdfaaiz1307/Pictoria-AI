@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import {z} from "zod"
 import React, { useId } from 'react'

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { User } from '@supabase/supabase-js'
 import React, { useId } from 'react'

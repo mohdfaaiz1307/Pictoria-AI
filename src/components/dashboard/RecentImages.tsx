@@ -15,10 +15,10 @@ import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/button'
   
 
-interface RecentImagesProps{
-    images: Array<Tables<"generated_images">> & {
-        url: string | undefined
-    }
+interface RecentImagesProps {
+    images: Array<Tables<"generated_images"> & {
+        url?: string;
+    }>;
 }
 
 const RecentImages = ({images}: RecentImagesProps) => {

@@ -7,7 +7,7 @@ const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN
 })
 
-const WEBHOOK_URL = process.env.SITE_URL ?? 'https://8a43-202-173-125-241.ngrok-free.app'
+const WEBHOOK_URL = process.env.SITE_URL ?? 'https://ea2b-202-173-125-26.ngrok-free.app'
 
 async function validateUserCredits(userId: string){
     const {data: userCredits, error} = await supabaseAdmin.from('credits').select('*').eq("user_id", userId).single();

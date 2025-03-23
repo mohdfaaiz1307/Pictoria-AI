@@ -8,7 +8,6 @@ import { Tables } from '@datatypes.types'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
 import Link from 'next/link'
-import { features } from 'process'
 import { Check } from 'lucide-react'
 
 type Product = Tables<"products">
