@@ -198,7 +198,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
     const customer = payment_method.customer as string;
     const { name, phone, address } = payment_method.billing_details;
     if (!name || !phone || !address) return;
-    //@ts-expect-error
+    //@ts-expect-error : Suppresses error when updating Stripe customer details
     await stripe.customers.update(customer, { name, phone, address });
     const { error: updateError } = await supabaseAdmin
       .from('users')
@@ -238,7 +238,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
       status: subscription.status as "active" | "canceled" | "incomplete" | "incomplete_expired" | "past_due" | "trialing" | "unpaid" | null | undefined,
       price_id: subscription.items.data[0].price.id,
       //TODO check quantity on subscription
-      // @ts-expect-error
+      // @ts-expect-error : Suppresses error if `quantity` is missing in `subscription`
       quantity: subscription.quantity,
       cancel_at_period_end: subscription.cancel_at_period_end,
       cancel_at: subscription.cancel_at

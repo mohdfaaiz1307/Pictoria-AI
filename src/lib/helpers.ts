@@ -1,7 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Tables } from '@datatypes.types';
 
-type Price = Tables<'prices'>;
 
 export const getURL = (path: string = '') => {
   // Check if NEXT_PUBLIC_SITE_URL is set and non-empty. Set this to your site URL in production env.
