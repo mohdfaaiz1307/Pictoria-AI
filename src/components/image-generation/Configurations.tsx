@@ -145,7 +145,7 @@ const Configurations = ({userModels, model_id}: ConfigurationsProps) => {
                   <SelectItem value="black-forest-labs/flux-dev">Flux Dev</SelectItem>
                   <SelectItem value="black-forest-labs/flux-schnell">Flux Schnell</SelectItem>
                   {
-                    userModels?.map(model => model.training_status === "succeeded" && <SelectItem key={model.id} value={`mohdfaaiz1307/${model.model_id}: ${model.version}`}>{model.model_name}</SelectItem>)
+                    userModels?.map(model => model.training_status === "succeeded" && <SelectItem key={model.id} value={`mohdfaaiz1307/${model.model_id}:${model.version}`}>{model.model_name}</SelectItem>)
                   }
                 </SelectContent>
               </Select>

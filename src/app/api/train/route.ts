@@ -7,7 +7,7 @@ const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN
 })
 
-const WEBHOOK_URL = process.env.SITE_URL ?? 'https://ea2b-202-173-125-26.ngrok-free.app'
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ea2b-202-173-125-26.ngrok-free.app'
 
 async function validateUserCredits(userId: string){
     const {data: userCredits, error} = await supabaseAdmin.from('credits').select('*').eq("user_id", userId).single();
@@ -95,7 +95,8 @@ export async function POST(request: NextRequest){
             training_status: training.status,
             trigger_word: "ohwx",
             training_steps: 1200,
-            training_id: training.id
+            training_time: training.metrics?.predict_time,
+            training_id: training.id,
           })
 
           // update credits
