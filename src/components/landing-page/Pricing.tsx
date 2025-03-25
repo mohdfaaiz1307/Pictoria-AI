@@ -29,7 +29,7 @@ const Pricing = ({
     const [billingInterval, setBillingInterval]= useState("month");
     console.log(products)
   return (
-    <section className='w-full bg-muted flex flex-col items-center justify-center'>
+    <section id="pricing" className='w-full bg-muted flex flex-col items-center justify-center'>
         <div className="w-full container px-6 Xs:px-8 sm:px-0 sm:mx-8 lg:mx-auto py-32 flex flex-col items-center justify-center space-y-8">
         <div className='text-center flex flex-col items-center justify-center'>
       <AnimatedGradientText>

@@ -3,8 +3,8 @@ import { AnimatedGradientText } from '../ui/animated-gradient-text'
 import { cn } from '@/lib/utils'
 import { Marquee } from '../ui/marquee';
 import avatar1 from "@/public/avatars/AutumnTechFocus.jpeg";
-import avatar2 from "@/public/avatars/Casual_Creative_Professional.jpeg";
-import avatar3 from "@/public/avatars/Golden_Hour_Contemplation.jpeg";
+import avatar2 from "@/public/avatars/Casual Creative Professional.jpeg";
+import avatar3 from "@/public/avatars/Golden Hour Contemplation.jpeg";
 import avatar4 from "@/public/avatars/Portrait of a Woman in Rust-Colored Top.jpeg";
 import avatar5 from "@/public/avatars/Radiant Comfort.jpeg";
 import avatar6 from "@/public/avatars/Relaxed Bearded Man with Tattoo at Cozy Cafe.jpeg";
@@ -93,7 +93,7 @@ const Testimonials = () => {
             <AnimatedGradientText className='bg-background backdrop-blur-0'>
                     
                     <span
-                    className={cn(`inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text-transparent`,)}>
+                    className={cn(`inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,)}>
                         Testimonials
                     </span>
                 </AnimatedGradientText>
